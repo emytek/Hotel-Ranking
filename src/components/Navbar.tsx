@@ -14,7 +14,6 @@ import {
   DrawerContent,
   DrawerCloseButton,
   DrawerBody,
-  Link,
   Button,
   useColorMode,
   Menu,
@@ -23,6 +22,7 @@ import {
   MenuItem,
   Icon
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { HamburgerIcon, MoonIcon, SunIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { FaPlus, FaHotel, FaClipboardList } from "react-icons/fa";
 import SearchBar from "./ui/Searchbar";
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
     <Box bg={bg} px={4} py={3}>
       <Flex alignItems="center" justifyContent="space-between">
         <Box display='flex' alignItems='center'>
-          <Link href="/" fontSize="xl" fontWeight="bold">
+          <Link to="/">
             <Image src='/brand.png' alt='hotel-ranking-logo' w= '45px'ml='.5rem'/>
           </Link>
           <Text display={{ base: "none", md: "flex" }}>Hotel Ranking</Text>
@@ -46,8 +46,8 @@ const Navbar: React.FC = () => {
         </Box>
         {/* <Spacer /> */}
         <HStack display={{ base: "none", md: "flex" }} spacing={6}>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
           <Menu>
             <MenuButton
               as={Button}
@@ -57,10 +57,12 @@ const Navbar: React.FC = () => {
               Services
             </MenuButton>
             <MenuList>
+            <Link to="/hotel/:id">
               <MenuItem>
                 <Icon as={FaPlus} mr={2} />
                 Add Hotel
               </MenuItem>
+              </Link>
               <MenuItem>
                 <Icon as={FaHotel} mr={2} />
                 My Hotels
@@ -91,30 +93,30 @@ const Navbar: React.FC = () => {
           <DrawerCloseButton />
           <DrawerBody>
             <VStack spacing={4}>
-              <Link href="/about">About</Link>
+              <Link to="/about">About</Link>
               <Menu>
-            <MenuButton
-              as={Button}
-              rightIcon={<ChevronDownIcon />}
-              variant="ghost"
-            >
-              Services
-            </MenuButton>
-            <MenuList>
-              <MenuItem>
-                <Icon as={FaPlus} mr={2} />
-                Add Hotel
-              </MenuItem>
-              <MenuItem>
-                <Icon as={FaHotel} mr={2} />
-                My Hotels
-              </MenuItem>
-              <MenuItem>
-                <Icon as={FaClipboardList} mr={2} />
-                My Bookings
-              </MenuItem>
-            </MenuList>
-          </Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                variant="ghost"
+              >
+                Services
+              </MenuButton>
+              <MenuList>
+                <MenuItem>
+                  <Icon as={FaPlus} mr={2} />
+                  Add Hotel
+                </MenuItem>
+                <MenuItem>
+                  <Icon as={FaHotel} mr={2} />
+                  My Hotels
+                </MenuItem>
+                <MenuItem>
+                  <Icon as={FaClipboardList} mr={2} />
+                  My Bookings
+                </MenuItem>
+              </MenuList>
+             </Menu>
               <IconButton
                 aria-label="Toggle dark mode"
                 icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
